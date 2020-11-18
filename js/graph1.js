@@ -21,11 +21,11 @@ console.log("values3", First);
            
            
   var xScale = d3.scaleBand()
-        .domain([0,400])
+        .domain([0,5])
         .range([0,width])
 
     var yScale = d3.scaleLinear()
-        .domain([0,400])
+        .domain([0,5])
         .range([height,0])
     
     
@@ -37,7 +37,7 @@ First.forEach(gettingName);
 
            
 function gettingName(item, index) {
-  namesValus.push(item.Name) 
+  namesValus.push(item.Item) 
 }
 
 console.log("values4", namesValus);
@@ -62,7 +62,7 @@ svg.append("g")
            
 //add y
 var y = d3.scaleLinear()
-.domain([0,400])
+.domain([0,5])
 .range([height, 0])
 svg.append("g")
 .call(d3.axisLeft(y));
@@ -75,7 +75,7 @@ svg.append("g")
 .append("rect")
 .attr("width", function(d){return 60})
 .attr("height", function(d){return yScale(parseInt(d.Price));})
-.attr("fill","green")
+.attr("fill","blue")
 .attr("x", function(d,i){return i*75.6})
 .attr('y', function(d){ return (height - parseInt(y(d.Price))); })
            
@@ -107,31 +107,31 @@ svg.append("g")
     })
 
          
-// var labels = d3.select("svg")
-//    .append("g")
-//    .classed("labels", true);
-//    
-//    labels.append("text")
-//    .text("NFL Extra Point Accuracy 2010-2016")
-//    .classed("title", true)
-//    .attr("text-anchor", "middle")
-//    .attr("x", margin.left+(width/2))
-//    .attr("y", margin.top-5)
-//    
-//    labels.append("text")
-//    .text("Player")
-//    .classed("label", true)
-//    .attr("text-anchor", "middle")
-//    .attr("x", margin.left+width/2)
-//    .attr("y", height+(margin.bottom+margin.top-5))
-//    
-//    labels.append("g")
-//    .attr("transform", "translate(20,"+(margin.top+(height/2))+")")
-//    .append("text")
-//    .text("Made Extra Points")
-//    .classed("label", true)
-//    .attr("text-anchor", "middle")
-//    .attr("transform", "rotate(90)")
+ var labels = d3.select("#barchart")
+    .append("g")
+    .classed("labels", true);
+    
+    labels.append("text")
+    .text("item")
+    .classed("title", true)
+    .attr("text-anchor", "middle")
+    .attr("x", margin.left+(width/2))
+    .attr("y", margin.top-5)
+    
+    labels.append("text")
+    .text("price")
+    .classed("label", true)
+    .attr("text-anchor", "middle")
+    .attr("x", margin.left+width/2)
+    .attr("y", height+(margin.bottom+margin.top-5))
+    
+    labels.append("g")
+    .attr("transform", "translate(20,"+(margin.top+(height/2))+")")
+    .append("text")
+    .text("y")
+    .classed("label", true)
+    .attr("text-anchor", "middle")
+    .attr("transform", "rotate(90)")
 }
 
 
