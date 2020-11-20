@@ -10,3 +10,37 @@ body
 {
   background-color:gray;  
 }
+h2
+{
+    color:skyblue;
+    font-size: 25px;
+}
+p
+{
+    color:darkseagreen;
+    text-align: center;
+    font-size: 30px;
+}
+.text 
+{
+    font-size: 11;
+}
+#tooltip.hidden
+{
+    display:none;
+}
+#tooltip
+{
+    position:absolute;
+    width:120px;
+    height:auto;
+    padding:10px;
+    background-color:lightpink;
+    border-radius:10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events:none;
+}
+#barchart svg
+{
+    background-color:lightgrey;
+}

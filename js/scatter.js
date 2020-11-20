@@ -15,7 +15,8 @@ var drawPlot = function(varieties,target,
 //        console.log(variety.WeightedAveragePrice,"variet")
         return yScale(variety.WeightedAveragePrice);    
     })
-    .attr("r",2.5)
+    .attr("r",4)
+    .attr("fill","white")
     .attr("class",function(variety)
     {
         if(variety.lesscollege_pct<80)

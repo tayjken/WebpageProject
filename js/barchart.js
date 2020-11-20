@@ -92,6 +92,7 @@ svg.append("g")
         .style("top",yPos+"px")
         .style("left",xPos+"px")
     
+    
         d3.select("#attempted")
         .text("Attempted:"+First.Item);
         d3.select("#made")
@@ -112,14 +113,14 @@ svg.append("g")
     .classed("labels", true);
     
     labels.append("text")
-    .text("item")
+    .text("Veggies vs Average Price")
     .classed("title", true)
     .attr("text-anchor", "middle")
-    .attr("x", margin.left+(width/2))
+    .attr("x", margin.left+(graphDim.width/2))
     .attr("y", margin.top-5)
     
     labels.append("text")
-    .text("price")
+    .text("Vegetables")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("x", margin.left+width/2)
@@ -128,11 +129,12 @@ svg.append("g")
     labels.append("g")
     .attr("transform", "translate(20,"+(margin.top+(height/2))+")")
     .append("text")
-    .text("y")
+    .text("Average Weighted Price")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("transform", "rotate(90)")
 }
+
 
 
 var successFCN = function(values)
