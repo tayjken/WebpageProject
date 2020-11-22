@@ -64,9 +64,7 @@ var makeTranslateString = function(x,y)
 }
 
 
-//graphDim is an object that describes the width and height of the graph area.
-//margins is an object that describes the space around the graph
-//xScale and yScale are the scales for the x and y scale.
+
 var drawAxes = function(graphDim,margins,
                          xScale,yScale)
 {
@@ -86,8 +84,7 @@ var drawAxes = function(graphDim,margins,
 }
 
 
-//graphDim -object that stores dimensions of the graph area
-//margins - objedct that stores the size of the margins
+
 var drawLabels = function(graphDim,margins)
 {
     var labels = d3.select("svg")
@@ -112,7 +109,7 @@ var drawLabels = function(graphDim,margins)
     .attr("transform", "translate(20,"+(margins.top+
     (graphDim.height/2))+")")
     .append("text")
-    .text("Average Cost")
+    .text("Average Price")
     .classed("label",true)
     .attr("text-anchor","middle")
     .attr("transform","rotate(90)")
@@ -120,7 +117,7 @@ var drawLabels = function(graphDim,margins)
 
 
 
-//sets up several important variables and calls the functions for the visualization.
+
 var initGraph = function(counties)
 {
     //size of screen

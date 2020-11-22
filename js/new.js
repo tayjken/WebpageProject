@@ -24,38 +24,38 @@ console.log("values3", organic);
          
 var xScale = d3.scaleBand()
         .domain([0,10])
-        .range([0,width])
+        .range([height,0])
 
 var yScale = d3.scaleLinear()
         .domain([10,0])
         .range([0,height])
     
           
-//add X
+
 var x = d3.scaleBand()
 .domain(["apple pears","organis apple pears","avocado","organic avocado","blackberries","organic blackberries","blueberries","organic blueberries","cranberries","organic cranberries","limes","organic limes"])
 .range([0,width])
-.padding([-.2])
+.padding([.2])
 svg2.append("g")
 .attr("transform", "translate("+(0)+","+(height)+")")
 .attr("class", "text")
 .call(d3.axisBottom(x))
 .selectAll("text")
-.attr("transform", "translate(-10,0)rotate(-35)")
+.attr("transform", "translate(-10,0)rotate(-25)")
 .style("text-anchor", "end");           
 
 console.log(height)
 
-//add y
+
 var y = d3.scaleLinear()
 .domain([0,5])
 .range([height,0])
 svg2.append("g")
 .call(d3.axisLeft(y));
 
-//show the bars
+
 svg2.append("g")
-.selectAll("rect")
+.selectAll("g")
 .data(organic)
 .enter()
 .append("rect")
@@ -63,9 +63,9 @@ svg2.append("g")
 .attr("height", function(d){return yScale(parseInt(d.Price));})
 .attr("fill","purple")
 .attr("x", function(d,i){return i*90})
-.attr('yScale', function(d){ return xScale(height - parseInt(y(d.Price))); })
+.attr('y', function(d){ return xScale(height - parseInt(y(d.Price))); })
          
-    //tooltip
+
 .on("mouseenter" ,function(organic)
       {
         
@@ -82,7 +82,8 @@ svg2.append("g")
 
         
         
-      })//tool tip off
+})
+    
     .on("mouseleave",function()
     {
         d3.select("#tooltiP")    
@@ -103,7 +104,7 @@ var labels = d3.select("#barchart3 svg")
     .attr("y", margin.top-5)
     
     labels.append("text")
-    .text("Crop")
+    .text("Variety of Crops")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("x", margin.left+width/2)
@@ -112,7 +113,7 @@ var labels = d3.select("#barchart3 svg")
     labels.append("g")
     .attr("transform", "translate(20,"+(margin.top+(height/2))+")")
     .append("text")
-    .text("Average Cost")
+    .text("Average Price")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("transform", "rotate(90)")

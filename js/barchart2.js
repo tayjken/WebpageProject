@@ -24,7 +24,7 @@ console.log("values3", veg);
          
 var xScale = d3.scaleBand()
         .domain([0,10])
-        .range([0,width])
+        .range([height,0])
 
 var yScale = d3.scaleLinear()
         .domain([10,0])
@@ -46,7 +46,7 @@ svg3.append("g")
 
 console.log(height)
 
-//add y
+
 var y = d3.scaleLinear()
 .domain([0,5])
 .range([height, 0])
@@ -55,17 +55,17 @@ svg3.append("g")
 
 //show the bars
 svg3.append("g")
-.selectAll("rect")
+.selectAll("g")
 .data(veg)
 .enter()
 .append("rect")
-.attr("width", function(d){return 25})
+.attr("width", function(d){return 30})
 .attr("height", function(d){return yScale(parseInt(d.Price));})
 .attr("fill","orange")
 .attr("x", function(d,i){return i*150})
 .attr('y', function(d){ return (height - parseInt(y(d.Item))); })
          
-    //tooltip
+    
 .on("mouseenter" ,function(veg)
       {
         
@@ -102,7 +102,7 @@ var labels = d3.select("#barchart2 svg")
     .attr("y", margin.top-5)
     
     labels.append("text")
-    .text("Vegetables")
+    .text("Variety of Vegetables")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("x", margin.left+width/2)
