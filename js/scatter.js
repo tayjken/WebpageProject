@@ -1,3 +1,9 @@
+//var svg = d3.select("#sugarplum")
+//.append("svg")
+//.attr("width", width + margin.left + margin.right)
+//.attr("height", height + margin.top + margin.bottom)
+//.append("g")
+//.attr("transform", "translate("+margin.left+","+margin.top+")");
 var drawPlot = function(varieties,target,
                          xScale,yScale)
 {
@@ -16,7 +22,7 @@ var drawPlot = function(varieties,target,
         return yScale(variety.WeightedAveragePrice);    
     })
     .attr("r",4)
-    .attr("fill","white")
+    .attr("fill","blue")
     .attr("class",function(variety)
     {
         if(variety.lesscollege_pct<80)
@@ -40,11 +46,9 @@ var drawPlot = function(varieties,target,
         .style("top",yPos+"px")
         .style("left",xPos+"px")
         
-        d3.select("#commodity")
-        .text(variety.commodity);
+        d3.select("#Places")
+        .text(variety.Grown);
         
-        d3.select("#variety")
-        .text(variety.variety);
       })//tool tip off
     .on("mouseleave",function()
     {
@@ -115,49 +119,6 @@ var drawLabels = function(graphDim,margins)
 }
 
 
-var drawLegend = function(graphDim,margins)
-{  var categories = [
-       {
-           class:"fruitsLegend",
-           name:"Fruits"
-       },
-       {
-           class:"veggieLegend",
-           name:"Vegetables"
-       }
-    ]
-
-//    var legend = d3.select("svg")
-//    .append("g")
-//    .classed("legend", true)
-//    .attr("transform", "translate("+
-//    (margins.left+10)+","+(margins.top+10)+")");
-// 
-//    var entries = legend.selectAll("g")
-//    .data(categories)
-//    .enter()
-//    .append("g")
-//    .classed("legendEntry", true)
-//    .attr("class", function(category){
-//        return category.class;
-//    })
-//    .attr("transform", function(categories, index){
-//        return "translate(0,"+index+20+")";
-//    })
-//    
-//    entries.append("rect")
-//    .attr("width", 5)
-//    .attr("height", 5)
-// 
-//    entries.append("text")
-//    .text(function(category){return category.name;})
-//    .attr("x", 15)
-//    .attr("y", 10)
-// 
-    
-    
-    
-}
 
 //sets up several important variables and calls the functions for the visualization.
 var initGraph = function(counties)
@@ -200,12 +161,7 @@ var initGraph = function(counties)
     
     drawAxes(graph,margins,xScale,yScale);
     drawPlot(counties,g0,xScale,yScale);
-    drawLabels(graph,margins);
-    drawLegend(graph,margins);
-    
-    
-    
-    
+    drawLabels(graph,margins);  
     
 }
 

@@ -1,7 +1,8 @@
 var margin = {top: 40, bottom: 100, right:30, left: 70},
     width = 400 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
-var svg = d3.select("#barchart")
+
+var svg = d3.select("#barchartt")
 .append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
@@ -9,13 +10,11 @@ var svg = d3.select("#barchart")
 .attr("transform", "translate("+margin.left+","+margin.top+")");
 
 
-
-       var initGraph1 =function(First){
+    var drawGraph1 =function(First) {
     var subgroups = First.columns.slice(0)
-    
-var groups = d3.map(First, function(d){return(d.group)}).keys()
+    var groups = d3.map(First,function(d){return(d.group)}).keys()
 
-console.log("valuegggs", subgroups);
+console.log("haha", subgroups);
 console.log("values3", First);
            
            
@@ -28,15 +27,14 @@ console.log("values3", First);
         .domain([0,5])
         .range([height,0])
     
+ var namesValus = [];   
+ First.forEach(gettingName); 
     
-    
+}
 //name           
-var namesValus = [];
-          
-First.forEach(gettingName);
 
            
-function gettingName(item, index) {
+function gettingName(item,index) {
   namesValus.push(item.Item) 
 }
 
@@ -46,16 +44,19 @@ console.log("values4", namesValus);
 var x = d3.scaleBand()
 .domain(namesValus)
 .range([0,width])
-.padding([0.2])
+.padding([0.1])
 svg.append("g")
-    .attr("class", "text")
+.attr("class", "text")
 .attr("transform", "translate("+(0)+","+(height)+")")
 .call(d3.axisBottom(x))
 .selectAll("text")
 .attr("transform", "translate(-10,0)rotate(-45)")
 .style("text-anchor", "end");
-           console.log(height);
-           
+console.log(height);
+
+          
+
+          
 
      
             
@@ -69,14 +70,14 @@ svg.append("g")
 
 //show the bars
 svg.append("g")
-.selectAll("g")
+.selectAll("rect")
 .data(First)
 .enter()
 .append("rect")
-.attr("width", function(d){return 60})
+.attr("width", function(d){return 12})
 .attr("height", function(d){return yScale(parseInt(d.Price));})
-.attr("fill","blue")
-.attr("x", function(d,i){return i*75.6})
+.attr("fill","white")
+.attr("x", function(d,i){return i*75.4})
 .attr('y', function(d){ return (height - parseInt(y(d.Price))); })
            
            
@@ -87,28 +88,26 @@ svg.append("g")
       var xPos = d3.event.pageX;
       var yPos = d3.event.pageY;
       
-        d3.select("#tooltip")
-        .classed("hidden",false)
+        d3.select("#tooltipp")
+        .classed("hiddenn",false)
         .style("top",yPos+"px")
         .style("left",xPos+"px")
     
     
-        d3.select("#attempted")
-        .text("Attempted:"+First.Item);
-        d3.select("#made")
-        .text("Made:"+extraPoint.Price);
+        d3.select("#Year")
+        .text("Year:"+First.Item);
         
         
         
       })//tool tip off
     .on("mouseleave",function()
     {
-        d3.select("#tooltip")    
+        d3.select("#tooltipp")    
         .classed("hidden",true);
     })
 
          
- var labels = d3.select("#barchart")
+ var labels = d3.select("#svg")
     .append("g")
     .classed("labels", true);
     
@@ -133,17 +132,14 @@ svg.append("g")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("transform", "rotate(90)")
-}
-
 
 
 var successFCN = function(values)
 {
-    console.log("values graph",values);
-    
-var First = values[0]
-var Opinion = values[1]
-    initGraph1(First)
+    console.log("values",values);
+    var First = values[0]
+    var Opinion = values[1]
+    drawGraph1(First)
 }
 
 var failFCN = function(error)
@@ -153,5 +149,8 @@ var failFCN = function(error)
 
 var FirstPromise = d3.csv("../csv/other.data.csv")
 var PerPromise = d3.csv("../csv/2020.data.csv")
+
 var promises=[FirstPromise,PerPromise]
+
 Promise.all(promises).then(successFCN,failFCN);
+
